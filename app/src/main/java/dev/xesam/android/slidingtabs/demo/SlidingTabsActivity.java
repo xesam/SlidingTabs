@@ -1,11 +1,14 @@
 package dev.xesam.android.slidingtabs.demo;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +27,8 @@ public class SlidingTabsActivity extends ActionBarActivity {
         ViewPager mViewPager1 = (ViewPager) findViewById(R.id.pager_1);
         mViewPager1.setAdapter(new SectionsPagerAdapter(getSupportFragmentManager()));
         SlidingTabLayout mSlidingTabLayout1 = (SlidingTabLayout) findViewById(R.id.sliding_tabs_1);
+        mSlidingTabLayout1.setSelectedIndicatorColors(Color.RED, Color.BLUE);
+        mSlidingTabLayout1.setIndicatorBarGravity(SlidingTabLayout.INDICATOR_BAR_GRAVITY_BOTTOM);
         mSlidingTabLayout1.setViewPager(mViewPager1);
 
         ViewPager mViewPager2 = (ViewPager) findViewById(R.id.pager_2);
@@ -32,15 +37,36 @@ public class SlidingTabsActivity extends ActionBarActivity {
         mSlidingTabLayout2.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
             @Override
             public int getIndicatorColor(int position) {
-                return 0xff5500ff;
+                return Color.rgb(0xff, 0x55, 0);
             }
 
             @Override
             public int getDividerColor(int position) {
-                return 0xff5500ff;
+                return Color.GRAY;
             }
         });
+        mSlidingTabLayout2.setmCustomTabSizer(new SlidingTabLayout.TabSizer() {
+            @Override
+            public int getIndicatorBarThickness() {
+                return 3;
+            }
 
+            @Override
+            public int getIndicatorThickness() {
+                return 5;
+            }
+
+            @Override
+            public int getDividerThickness() {
+                return 2;
+            }
+
+            @Override
+            public float getDividerHeight() {
+                return 0.8f;
+            }
+        });
+        mSlidingTabLayout2.setDividerEnable(true);
         mSlidingTabLayout2.setDistributeEvenly(true);
         mSlidingTabLayout2.setViewPager(mViewPager2);
 
@@ -52,13 +78,32 @@ public class SlidingTabsActivity extends ActionBarActivity {
         mSlidingTabLayout3.setDistributeEvenly(true);
         mSlidingTabLayout3.setViewPager(mViewPager3);
 
+        ViewPager mViewPager4 = (ViewPager) findViewById(R.id.pager_4);
+        mViewPager4.setAdapter(new SectionsPagerAdapter(getSupportFragmentManager(), 3));
+        SlidingTabLayout mSlidingTabLayout4 = (SlidingTabLayout) findViewById(R.id.sliding_tabs_4);
+        mSlidingTabLayout4.setDistributeEvenly(true);
+        mSlidingTabLayout4.setSlidingTabAdapter(new SlidingTabLayout.SlidingTabAdapter() {
+
+            private int[] imgs = {
+                    R.drawable.ic_menu_account_list,
+                    R.drawable.ic_menu_allfriends,
+                    R.drawable.ic_menu_always_landscape_portrait
+            };
+
+            @Override
+            public View getTabView(PagerAdapter pagerAdapter, ViewGroup parent, int position) {
+                TextView tv = new TextView(SlidingTabsActivity.this);
+                tv.setGravity(Gravity.CENTER);
+                tv.setCompoundDrawablesWithIntrinsicBounds(0, imgs[position % imgs.length], 0, 0);
+                tv.setCompoundDrawablePadding(10);
+                tv.setText(pagerAdapter.getPageTitle(position));
+                return tv;
+            }
+        });
+        mSlidingTabLayout4.setViewPager(mViewPager4);
+
     }
 
-
-    /**
-     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-     * one of the sections/tabs/pages.
-     */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         private int count = 3;
@@ -74,7 +119,7 @@ public class SlidingTabsActivity extends ActionBarActivity {
 
         @Override
         public Fragment getItem(int position) {
-            return PlaceholderFragment.newInstance(position + 1);
+            return PlaceholderFragment.newInstance(position);
         }
 
         @Override
@@ -88,20 +133,10 @@ public class SlidingTabsActivity extends ActionBarActivity {
         }
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
     public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
+
         private static final String ARG_SECTION_NUMBER = "section_number";
 
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
         public static PlaceholderFragment newInstance(int sectionNumber) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
@@ -114,12 +149,14 @@ public class SlidingTabsActivity extends ActionBarActivity {
         }
 
         @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_sliding_tabs, container, false);
-            TextView tv = (TextView) rootView.findViewById(R.id.section_label);
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            TextView tv = new TextView(getActivity());
+            tv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            tv.setBackgroundColor(Color.rgb(0xe4, 0xe4, 0xe4));
+            tv.setGravity(Gravity.CENTER);
+            tv.setTextSize(50);
             tv.setText(getArguments().getInt(ARG_SECTION_NUMBER) + "");
-            return rootView;
+            return tv;
         }
     }
 

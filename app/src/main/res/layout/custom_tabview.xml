@@ -6,9 +6,10 @@
 
     <TextView
         android:id="@+id/custom_tv"
-        android:layout_width="match_parent"
+        android:layout_width="80dp"
         android:layout_height="match_parent"
+        android:textColor="@drawable/selectable"
+        android:gravity="center"
         android:padding="8dp"
-        android:textColor="#ff5500"
         android:textSize="16dp" />
 </LinearLayout>

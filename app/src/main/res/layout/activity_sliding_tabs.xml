@@ -1,43 +1,54 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".SlidingTabsActivity">
 
-    <dev.xesam.android.slidingtabs.widgets.SlidingTabLayout
-        android:id="@+id/sliding_tabs_1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.0" />
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/pager_1"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.0" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-    <dev.xesam.android.slidingtabs.widgets.SlidingTabLayout
-        android:id="@+id/sliding_tabs_2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.0" />
+        <dev.xesam.android.slidingtabs.widgets.SlidingTabLayout
+            android:id="@+id/sliding_tabs_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/pager_2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.0" />
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager_1"
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
 
-    <dev.xesam.android.slidingtabs.widgets.SlidingTabLayout
-        android:id="@+id/sliding_tabs_3"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.0" />
+        <dev.xesam.android.slidingtabs.widgets.SlidingTabLayout
+            android:id="@+id/sliding_tabs_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/pager_3"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.0" />
-</LinearLayout>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager_2"
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
+
+        <dev.xesam.android.slidingtabs.widgets.SlidingTabLayout
+            android:id="@+id/sliding_tabs_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00FFFF" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager_3"
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
+
+        <dev.xesam.android.slidingtabs.widgets.SlidingTabLayout
+            android:id="@+id/sliding_tabs_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager_4"
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
+    </LinearLayout>
+</ScrollView>
