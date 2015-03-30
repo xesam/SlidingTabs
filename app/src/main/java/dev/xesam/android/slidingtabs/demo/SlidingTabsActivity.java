@@ -12,6 +12,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import dev.xesam.android.slidingtabs.R;
@@ -94,6 +95,7 @@ public class SlidingTabsActivity extends ActionBarActivity {
             @Override
             public View getTabView(PagerAdapter pagerAdapter, ViewGroup parent, int position) {
                 TextView tv = new TextView(SlidingTabsActivity.this);
+                tv.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
                 tv.setGravity(Gravity.CENTER);
                 tv.setCompoundDrawablesWithIntrinsicBounds(0, imgs[position % imgs.length], 0, 0);
                 tv.setCompoundDrawablePadding(10);
