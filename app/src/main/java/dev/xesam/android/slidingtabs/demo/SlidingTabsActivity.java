@@ -83,7 +83,7 @@ public class SlidingTabsActivity extends ActionBarActivity {
         mViewPager4.setAdapter(new SectionsPagerAdapter(getSupportFragmentManager(), 3));
         SlidingTabLayout mSlidingTabLayout4 = (SlidingTabLayout) findViewById(R.id.sliding_tabs_4);
         mSlidingTabLayout4.setDistributeEvenly(true);
-        mSlidingTabLayout4.setSlidingTabAdapter(new SlidingTabLayout.SlidingTabAdapter() {
+        mSlidingTabLayout4.setCustomTabAdapter(new SlidingTabLayout.SlidingTabAdapter() {
 
             private int[] imgs = {
                     R.drawable.ic_menu_account_list,

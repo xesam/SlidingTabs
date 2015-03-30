@@ -267,7 +267,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
     /**
      * Set the custom SlidingTabAdapter.
      */
-    public void setSlidingTabAdapter(SlidingTabAdapter slidingTabAdapter) {
+    public void setCustomTabAdapter(SlidingTabAdapter slidingTabAdapter) {
         mSlidingTabAdapter = slidingTabAdapter;
     }
 
