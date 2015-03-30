@@ -41,7 +41,7 @@ class SlidingTabStrip extends LinearLayout {
     private float mDividerHeight;
 
     //indicator
-    private int mIndicatorBarGravity = SlidingTabLayout.INDICATOR_BAR_GRAVITY_TOP;
+    private int mIndicatorBarGravity = SlidingTabLayout.INDICATOR_BAR_GRAVITY_BOTTOM;
     private int mIndicatorThickness;
     private final Paint mIndicatorPaint;
     //indicator bar
