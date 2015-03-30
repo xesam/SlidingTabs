@@ -47,7 +47,6 @@ class SlidingTabStrip extends LinearLayout {
     //indicator bar
     private int mIndicatorBarThickness;
     private final Paint mIndicatorBarPaint;
-    private int mDefaultIndicatorBarColor;
 
     private int mSelectedPosition;
     private float mSelectionOffset;
@@ -72,9 +71,8 @@ class SlidingTabStrip extends LinearLayout {
         mIndicatorPaint = new Paint();
         mDividerPaint = new Paint();
 
-        mDefaultIndicatorBarColor = setColorAlpha(themeForegroundColor, DEFAULT_INDICATOR_BAR_COLOR_ALPHA);
         mIndicatorBarPaint = new Paint();
-        mIndicatorBarPaint.setColor(mDefaultIndicatorBarColor);
+        resetIndicatorBarColor(setColorAlpha(themeForegroundColor, DEFAULT_INDICATOR_BAR_COLOR_ALPHA));
 
         mDefaultTabColorizer = new SimpleTabColorizer();
         mDefaultTabColorizer.setIndicatorColors(DEFAULT_INDICATOR_COLOR);
@@ -110,9 +108,12 @@ class SlidingTabStrip extends LinearLayout {
         invalidate();
     }
 
+    private void resetIndicatorBarColor(int color) {
+        mIndicatorBarPaint.setColor(color);
+    }
+
     void setIndicatorBarColor(int color) {
-        mDefaultIndicatorBarColor = color;
-        mIndicatorBarPaint.setColor(mDefaultIndicatorBarColor);
+        resetIndicatorBarColor(color);
         invalidate();
     }
 
@@ -150,6 +151,12 @@ class SlidingTabStrip extends LinearLayout {
                 ? mCustomTabColorizer
                 : mDefaultTabColorizer;
 
+        if (mIndicatorBarGravity == SlidingTabLayout.INDICATOR_BAR_GRAVITY_BOTTOM) {
+            canvas.drawRect(0, height - mIndicatorBarThickness, getWidth(), height, mIndicatorBarPaint);
+        } else {
+            canvas.drawRect(0, 0, getWidth(), mIndicatorBarThickness, mIndicatorBarPaint);
+        }
+
         // Thick colored underline below the current selection
         if (childCount > 0) {
             View selectedTitle = getChildAt(mSelectedPosition);
@@ -176,12 +183,6 @@ class SlidingTabStrip extends LinearLayout {
             } else {
                 canvas.drawRect(left, 0, right, mIndicatorThickness, mIndicatorPaint);
             }
-        }
-
-        if (mIndicatorBarGravity == SlidingTabLayout.INDICATOR_BAR_GRAVITY_BOTTOM) {
-            canvas.drawRect(0, height - mIndicatorBarThickness, getWidth(), height, mIndicatorBarPaint);
-        } else {
-            canvas.drawRect(0, 0, getWidth(), mIndicatorBarThickness, mIndicatorBarPaint);
         }
 
         if (mDividerEnable) {

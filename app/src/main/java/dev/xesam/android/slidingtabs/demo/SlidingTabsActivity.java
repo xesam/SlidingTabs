@@ -29,6 +29,7 @@ public class SlidingTabsActivity extends ActionBarActivity {
         SlidingTabLayout mSlidingTabLayout1 = (SlidingTabLayout) findViewById(R.id.sliding_tabs_1);
         mSlidingTabLayout1.setSelectedIndicatorColors(Color.RED, Color.BLUE);
         mSlidingTabLayout1.setIndicatorBarGravity(SlidingTabLayout.INDICATOR_BAR_GRAVITY_BOTTOM);
+        mSlidingTabLayout1.setIndicatorBarColor(Color.YELLOW);
         mSlidingTabLayout1.setViewPager(mViewPager1);
 
         ViewPager mViewPager2 = (ViewPager) findViewById(R.id.pager_2);

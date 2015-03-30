@@ -188,6 +188,10 @@ public class SlidingTabLayout extends HorizontalScrollView {
         mTabStrip.setIndicatorBarGravity(indicatorBarGravity);
     }
 
+    public void setIndicatorBarColor(int color) {
+        mTabStrip.setIndicatorBarColor(color);
+    }
+
     public void setDividerEnable(boolean enable) {
         mTabStrip.setDividerEnable(enable);
     }
